@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+
+# extra
+.DS_Store
+llms_full.txt
+sklearn_vectorstore.parquet

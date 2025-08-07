@@ -1,0 +1,282 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Muted Retro Color Palette */
+  --bg-primary: #2a2a2a;
+  --bg-secondary: #3a3a3a;
+  --bg-tertiary: #4a4a4a;
+  --bg-card: #353535;
+  
+  --accent-cyan: #4a9eff;
+  --accent-pink: #d64570;
+  --accent-green: #6ba368;
+  --accent-purple: #8b6f9e;
+  --accent-orange: #d18c47;
+  --accent-blue: #5a8ed1;
+  
+  --text-primary: #e8e8e8;
+  --text-secondary: #b8b8b8;
+  --text-muted: #888888;
+  --text-accent: #4a9eff;
+  
+  --border-primary: #555555;
+  --border-accent: #4a9eff;
+  --border-highlight: #d64570;
+  
+  /* Pixel Fonts */
+  --font-primary: 'Orbitron', 'Share Tech Mono', monospace;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  overflow-x: hidden;
+}
+
+/* Pixelated Gray Background Pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: 
+    /* Small dots pattern like Hex */
+    radial-gradient(circle, #1a1a1a 0.5px, transparent 0.5px),
+    radial-gradient(circle, #4a4a4a 0.5px, transparent 0.5px),
+    /* Larger grid overlay */
+    linear-gradient(90deg, transparent 49%, #3a3a3a 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, #3a3a3a 50%, transparent 51%);
+  background-size: 
+    8px 8px,
+    16px 16px, 
+    32px 32px,
+    32px 32px;
+  background-position: 
+    0 0,
+    4px 4px,
+    0 0,
+    0 0;
+  opacity: 0.8;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Enhanced grainy texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: 
+    /* Fine grain noise */
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 1px,
+      rgba(255, 255, 255, 0.04) 1px,
+      rgba(255, 255, 255, 0.04) 2px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.04) 1px,
+      rgba(0, 0, 0, 0.04) 2px
+    ),
+    /* Additional random grain pattern */
+    repeating-linear-gradient(
+      30deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.015) 2px,
+      rgba(255, 255, 255, 0.015) 3px
+    ),
+    repeating-linear-gradient(
+      -30deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.015) 2px,
+      rgba(0, 0, 0, 0.015) 3px
+    );
+  background-size: 3px 3px, 3px 3px, 7px 7px, 7px 7px;
+  background-position: 0 0, 1px 1px, 2px 2px, 3px 3px;
+  image-rendering: pixelated;
+  animation: grainShift 8s linear infinite;
+}
+
+@keyframes grainShift {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, 1px); }
+}
+
+@keyframes backgroundShift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(50px, -30px) rotate(1deg); }
+  66% { transform: translate(-30px, 20px) rotate(-0.5deg); }
+}
+
+@keyframes dotAnimation {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20px, 20px); }
+}
+
+.App {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Retro Button Styles */
+.retro-btn {
+  background: var(--bg-tertiary);
+  color: var(--text-accent);
+  border: 2px solid var(--border-accent);
+  font-family: var(--font-primary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.retro-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent-cyan)44, transparent);
+  transition: left 0.5s;
+}
+
+.retro-btn:hover {
+  background: var(--bg-card);
+  box-shadow: 0 0 15px var(--accent-cyan)66;
+  transform: translateY(-2px);
+}
+
+.retro-btn:hover::before {
+  left: 100%;
+}
+
+/* Glitch Effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch::before {
+  animation: glitch-1 0.5s infinite;
+  color: var(--accent-cyan);
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch-2 0.5s infinite;
+  color: var(--accent-pink);
+  z-index: -2;
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(1px, 1px); }
+  40% { transform: translate(1px, -1px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(-1px, -1px); }
+}
+
+/* Accent Glow Text */
+.accent-text {
+  color: var(--accent-cyan);
+  text-shadow: 
+    0 0 3px var(--accent-cyan),
+    0 0 6px var(--accent-cyan),
+    0 0 9px var(--accent-cyan);
+}
+
+/* Retro Card Styles */
+.retro-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.retro-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, var(--accent-cyan)15 50%, transparent 70%);
+  pointer-events: none;
+}
+
+.retro-card:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px var(--accent-cyan)33;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan);
+  border-radius: 0;
+  box-shadow: inset 0 0 6px var(--accent-cyan)44;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-pink);
+  box-shadow: 0 0 8px var(--accent-pink);
+}

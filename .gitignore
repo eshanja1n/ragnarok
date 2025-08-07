@@ -211,3 +211,5 @@ __marimo__/
 .DS_Store
 llms_full.txt
 sklearn_vectorstore.parquet
+*.db
+.claude
